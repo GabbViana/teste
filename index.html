@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Base Clara</title>
   <style>
-    /* Import your custom font */
     @font-face {
       font-family: 'SweetSansPro';
       src: url('SweetSansProRegular.otf') format('opentype');
@@ -17,32 +16,61 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      background-color: #f6f4f1; /* cor de fundo da segunda imagem */
+      background-color: #f6f4f1;
+      font-family: 'SweetSansPro', sans-serif;
+    }
+
+    .container {
+      height: 100%;
+      width: 100%;
       display: flex;
-      align-items: center;
+      flex-direction: column;
       justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
     }
 
     h1 {
-      font-family: 'SweetSansPro', sans-serif;
-      color: #cd879b; /* cor rosa da primeira imagem */
+      color: #cd879b;
       font-size: 6rem;
+      margin: 0;
       text-align: center;
+      pointer-events: none; /* Para não bloquear o clique */
+    }
+
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <h1>Base Clara</h1>
+  <div class="container" id="audioArea">
+    <h1>Base Clara</h1>
+    <audio id="audio" src="base_clara.mp3"></audio>
+  </div>
 
   <script>
-    // Cria e toca o áudio em loop com delay de 3s
-    document.addEventListener('DOMContentLoaded', function() {
-      const audio = new Audio('./base_clara.mp3');
-      // quando terminar, espera 3s e toca de novo
-      audio.addEventListener('ended', () => {
-        setTimeout(() => audio.play(), 1750);
-      });
-      audio.play();
+    const audio = document.getElementById('audio');
+    const audioArea = document.getElementById('audioArea');
+
+    let isPlaying = false;
+
+    audioArea.addEventListener('click', () => {
+      if (!isPlaying) {
+        setTimeout(() => {
+          audio.play();
+        }, 1); // Delay de 3 segundos
+        isPlaying = true;
+      } else {
+        audio.pause();
+        audio.currentTime = 0;
+        isPlaying = false;
+      }
+    });
+
+    audio.addEventListener('ended', () => {
+      isPlaying = false;
     });
   </script>
 </body>
