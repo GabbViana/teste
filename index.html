@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Base Clara</title>
+  <style>
+    /* Import your custom font */
+    @font-face {
+      font-family: 'SweetSansPro';
+      src: url('SweetSansProRegular.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #f6f4f1; /* cor de fundo da segunda imagem */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      font-family: 'SweetSansPro', sans-serif;
+      color: #cd879b; /* cor rosa da primeira imagem */
+      font-size: 6rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Base Clara</h1>
+
+  <script>
+    // Cria e toca o áudio em loop com delay de 3s
+    document.addEventListener('DOMContentLoaded', function() {
+      const audio = new Audio('./base_clara.mp3');
+      // quando terminar, espera 3s e toca de novo
+      audio.addEventListener('ended', () => {
+        setTimeout(() => audio.play(), 1750);
+      });
+      audio.play();
+    });
+  </script>
+</body>
+</html>
